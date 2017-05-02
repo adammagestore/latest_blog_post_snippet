@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Khai bao snippet latest blog post-->
+    <template id="snippet_blog_post" inherit_id="website.snippets" name="snippet_blog_post">
+        <xpath expr="//div[@id='snippet_content']/div[@class='o_panel_body']" position="inside">
+            <div>
+                <div class="oe_snippet_thumbnail">
+                    <div style="background: white;box-shadow:none;-webkit-box-shadow:none;" class="oe_snippet_thumbnail_img" >
+                        <i class="fa fa-tasks fa-5x text-muted"></i>
+                    </div>
+                    <span class="oe_snippet_thumbnail_title">Latest Blog Post</span>
+                </div>
+                <div class="oe_snippet_body oe_latest_blog_post mb16 mt16">
+                    <div class="latest_blog_post_list">
+                        <div>This is the latest blog post snippet content</div>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@id='snippet_options']" position="inside">
+            <div data-js='snippet_blog_post'
+                data-selector=".oe_latest_blog_post"
+                data-drop-near="p, h1, h2, h3, blockquote, .well, .panel"
+                data-drop-in=".content"
+               >
+                <li class="dropdown-submenu">
+                    <a href="#">Show posts</a>
+                    <ul class="dropdown-menu">
+                        <li data-select_class="book_snippet-show3">
+                            <a>3</a>
+                        </li>
+                        <li data-select_class="book_snippet-show5">
+                            <a>5</a>
+                        </li>
+                        <li data-select_class="book_snippetshow10">
+                            <a>10</a>
+                        </li>
+                        <li data-select_class="book_snippetshow15">
+                            <a>15</a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+        </xpath>
+    </template>
+    <template id="latest_blog_post_list" name="latest_blog_post_list">
+        <t t-ignore="true">
+            <t t-if="events">
+                <div class="latest_blog_post_list">
+                    <div>
+                        <div class="header"><h4>Bài viết mới nhất</h4></div>
+                        <div t-foreach="events" t-as="event_dict" class="oe_website_overflow_ellipsis mb8">
+                            <div class="blog-post-item">
+                                <div class="blog-post-name">
+                                    <a t-att-href="event_dict['event'].website_url"><t t-esc="event_dict['event'].name"/></a>
+                                </div>
+                                <div class="create-date">
+                                    Ngày đăng: <t t-esc="event_dict['create_date']"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
